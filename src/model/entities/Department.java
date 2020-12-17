@@ -1,6 +1,11 @@
 package model.entities;
 
-public class Department {
+import java.io.Serializable;
+
+public class Department implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String name;
 	
@@ -48,6 +53,10 @@ public class Department {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name + "]";
+	}
 	
 }
