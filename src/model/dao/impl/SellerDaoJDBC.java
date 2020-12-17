@@ -1,7 +1,8 @@
-package model.dao;
+package model.dao.impl;
 
 import java.util.List;
 
+import model.dao.SellerDao;
 import model.entities.Seller;
 
 public class SellerDaoJDBC implements SellerDao {
