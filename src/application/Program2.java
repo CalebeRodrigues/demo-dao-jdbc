@@ -1,5 +1,6 @@
 package application;
 
+import java.util.List;
 import java.util.Scanner;
 
 import model.dao.DaoFactory;
@@ -14,10 +15,17 @@ public class Program2 {
 		
 		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 
-		System.out.println("=== TEST 1: findById =======");
+		System.out.println("----- TEST 1 - findById -----");
 		Department dep = departmentDao.findById(1);
 		System.out.println(dep);
 		
+		System.out.println();
+		
+		System.out.println("\n----- TEST 2 - findAll -----");
+		List<Department> list = departmentDao.findAll();
+		for (Department d : list) {
+			System.out.println(d);
+		}
 	}
 
 }
