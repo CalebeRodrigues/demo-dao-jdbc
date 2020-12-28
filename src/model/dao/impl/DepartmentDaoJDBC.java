@@ -34,18 +34,17 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement( "Insert into department (Id, Name)" + 
-										"Values (?, ?)", Statement.RETURN_GENERATED_KEYS);
+			st = conn.prepareStatement( "Insert into department (Name)" + 
+										"Values (?)", Statement.RETURN_GENERATED_KEYS);
 			
-			st.setInt(1, obj.getId());
-			st.setString(2, obj.getName());
+			st.setString(1, obj.getName());
 			
 			int rows = st.executeUpdate();
 			
 			if(rows > 0) {
 				ResultSet rs = st.getGeneratedKeys();
 				
-				if(rs.next())obj.setId(rs.getInt("Id"));
+				if(rs.next())obj.setId(rs.getInt(1));
 				
 				DB.closeResultSet(rs);
 			}

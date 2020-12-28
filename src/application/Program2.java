@@ -26,6 +26,17 @@ public class Program2 {
 		for (Department d : list) {
 			System.out.println(d);
 		}
+		
+		System.out.println();
+		
+		System.out.println("\n----- TEST 3 - insert -----");
+		Department newDepartment = new Department(null, "Music");
+		departmentDao.insert(newDepartment);
+		System.out.println("Inserted! New id: " + newDepartment.getId());
+		
+		System.out.println();
+		
+		
 	}
 
 }
