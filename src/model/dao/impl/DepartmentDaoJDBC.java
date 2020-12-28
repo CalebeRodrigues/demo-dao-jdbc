@@ -1,6 +1,9 @@
 package model.dao.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import model.dao.DepartmentDao;
@@ -12,6 +15,13 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 	
 	public DepartmentDaoJDBC (Connection conn) {
 		this.conn = conn;
+	}
+	
+	private Department instantiateDepartment(ResultSet rs) throws SQLException {
+		Department dep = new Department();
+		dep.setId(rs.getInt("DepartmentId"));
+		dep.setName(rs.getString("DepName"));
+		return dep;
 	}
 	
 	@Override
@@ -31,6 +41,24 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 
 	@Override
 	public Department findById(Integer id) {
+		
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			st = conn.prepareStatement( "Select * from department " +
+										"Where Id = ?");
+			
+			st.setInt(1, id);
+			
+			rs = st.executeQuery();
+			
+			if(rs.next()) {
+				
+			}
+			
+		}
 		
 		return null;
 	}
