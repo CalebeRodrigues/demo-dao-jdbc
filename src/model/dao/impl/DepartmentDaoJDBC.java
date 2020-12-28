@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import db.DB;
+import db.DbException;
 import model.dao.DepartmentDao;
 import model.entities.Department;
 
@@ -55,12 +57,17 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 			rs = st.executeQuery();
 			
 			if(rs.next()) {
-				
+				return instantiateDepartment(rs);
 			}
-			
+			return null;
 		}
-		
-		return null;
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 	@Override
